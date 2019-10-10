@@ -1,0 +1,7 @@
+[user]
+	email = hi.suguru@gmail.com
+	name = Suguru Hirakawa
+
+[core]
+	editor = vim -c \"set fenc=utf-8\"
+	excludesfile = /Users/admin/.gitignore_global
