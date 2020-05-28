@@ -16,7 +16,6 @@ brew "hashpump"
 brew "imagemagick@6", link: true
 brew "jadx"
 brew "md5sha1sum"
-brew "mono", link: false
 brew "mysql"
 brew "nodebrew"
 brew "nodenv"
