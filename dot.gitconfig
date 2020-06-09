@@ -4,5 +4,5 @@
 
 [core]
 	editor = vim -c \"set fenc=utf-8\"
-	excludesfile = /Users/admin/.gitignore_global
+	excludesfile = /Users/lorse/.gitignore_global
 	autocrlf = input

@@ -1,5 +1,11 @@
 # Macにおける環境構築メモ
 
+## 手順
+1. [Homebrewのインストール](###Homebrew)
+1. `brew cask Dropbox`
+1. `./setup.sh`
+1. LINE, Audacityのインストール
+
 ## システム環境設定
 
 ### キーボード
@@ -37,11 +43,7 @@ killall Finder
 brew cask install visual-studio-code
 ```
 
-2. 設定のリストア
-```bash
-cd dotfiles
-./setup_mac.sh
-```
+2. Settings Syncで設定のリストア
 
 [Visual Studio Code の設定を共有・バックアップする](https://qiita.com/maromaro3721/items/b6d71a5e5d2d6433778a)
 
@@ -76,7 +78,7 @@ xcode-select --install
 
 2. Homebrewのインストール
 ```bash
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
 
 3. インストールの確認
@@ -237,7 +239,7 @@ pyenv --version
 
 ### Node
 
-1.`tj/n`のインストール 
+1.`tj/n`のインストール
 ```bash
 brew install n
 ```
