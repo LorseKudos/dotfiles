@@ -8,6 +8,8 @@
 
 ## システム環境設定
 
+[Macのオススメ初期セットアップ(Mojave)](https://qiita.com/uhooi/items/8279cbda8bde08836a47)
+
 ### キーボード
 [MACのUSキーボードのcommandキーを英数・かなキーに変更する](https://qiita.com/eburairu/items/333e4f51e9447cd83fdc)
 
@@ -184,7 +186,7 @@ echo 'eval "$(direnv hook bash)"' >> ~/.zshrc
 ### Golang
 1. goenvのインストール
 ```bash
-brew install goenv
+git clone https://github.com/syndbg/goenv.git ~/.goenv
 ```
 
 2. 環境変数の設定

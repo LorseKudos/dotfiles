@@ -12,7 +12,6 @@ brew "docker"
 brew "foremost"
 brew "git"
 brew "gnuplot"
-brew "goenv"
 brew "hashpump"
 brew "imagemagick@6", link: true
 brew "jadx"
