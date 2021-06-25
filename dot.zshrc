@@ -1,8 +1,16 @@
 setopt PROMPT_SUBST
-source /usr/local/etc/bash_completion.d/git-prompt.sh
-source /usr/local/etc/bash_completion.d/git-completion.bash
+source ~/.zsh/git-prompt.sh
 
+# git-completionの読み込み
+fpath=(~/.zsh $fpath)
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+autoload -Uz compinit && compinit
+
+# プロンプトのオプション表示設定
 GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWSTASHSTATE=true
+GIT_PS1_SHOWUPSTREAM=auto
 
 if [ -e /usr/local/share/zsh-completions ]; then
     fpath=(/usr/local/share/zsh-completions $fpath)
@@ -38,3 +46,4 @@ alias la='ls -A'
 alias l='ls -CF'
 
 source ~/.zsh_profile
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)

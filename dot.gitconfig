@@ -1,8 +1,14 @@
 [user]
-	email = hi.suguru@gmail.com
-	name = Suguru Hirakawa
-
+        email = hi.suguru@gmail.com
+        name = Suguru Hirakawa
+[url "git@github.com:"]
+        pushinsteadof = https://github.com/
 [core]
-	editor = vim -c \"set fenc=utf-8\"
-	excludesfile = /Users/lorse/.gitignore_global
-	autocrlf = input
+        autocrlf = false
+        ignorecase = false
+        quotepath = false
+[color]
+        ui = true
+[alias]
+        co = commit
+        ps = push

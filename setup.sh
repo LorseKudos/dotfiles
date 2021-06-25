@@ -8,7 +8,7 @@ do
     [[ "$f" == "dot.brewfile" ]] && continue
 
     echo "${f:3}"
-    ln -s $HOME/Dropbox/dotfiles/$f $HOME/${f:3}
+    ln -s $HOME/.dotfiles/$f $HOME/${f:3}
 done
 
-brew bundle install --file=dot.brewfile
+# brew bundle install --file=dot.brewfile
