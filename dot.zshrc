@@ -45,5 +45,20 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias ..='cd ..'
+alias b='cd ..'
+alias bb='cd ../..'
+alias bbb='cd ../..'
+alias c='clear'
+
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+setopt extended_history
+setopt hist_ignore_all_dups
+setopt share_history
+
+setopt interactive_comments
+
 source ~/.zsh_profile
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
