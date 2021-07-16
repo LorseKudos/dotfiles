@@ -61,7 +61,7 @@ setopt share_history
 setopt interactive_comments
 
 if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
-    eval `ssh-agent -s` > /dev/null
+    eval `ssh-agent` > /dev/null
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 fi
 
