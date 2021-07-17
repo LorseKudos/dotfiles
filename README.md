@@ -1,10 +1,67 @@
+# WSL環境構築
+## linuxbrew導入
+```bash
+sudo apt update
+sudo apt-get install build-essential curl file git
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+brew --version
+```
+
+## zshに変更
+```bash
+brew install zsh
+echo `which zsh` | sudo tee -a /etc/shells
+chsh -s `which zsh`
+```
+
+## dotfile復元 / git_completionインストール / シンボリックリンク貼る
+```bash
+git clone https://github.com/LorseKudos/dotfiles.git
+mv dotfiles .dotfiles
+./.dotfiles/setup.sh
+```
+
+## WSLのshellにWindowsのPATHを含まないようにする
+```bash
+cat << 'EOS' | sudo tee -a /etc/wsl.conf
+[interop]
+appendWindowsPath = false
+EOS
+```
+https://amaya382.hatenablog.jp/entry/2019/12/27/120057
+
+## github
+```bash
+ssh-keygen -t rsa -b 4096 -C "wsl"
+cat << 'EOS' | sudo tee -a ~/.ssh/config
+AddKeysToAgent yes
+
+Host github
+  HostName github.com
+  IdentityFile ~/.ssh/id_rsa
+  User git
+EOS
+cat ~/.ssh/id_rsa.pub | pbcopy
+# ブラウザでgithubに公開鍵登録
+ssh -T git@github.com
+```
+
+## docker
+https://dk521123.hatenablog.com/entry/2020/12/10/094125
+1. Docker Disktopを開き、`設定アイコン > Resources > WSL INTERRATION`を選択
+2. `Enable integration with additional distros:`配下にある`Ubuntu`をONにする
+3. `Apply & Restart`ボタン押下
+4. Ubuntu上で `docker --version` を実行
+
+## 拡張機能
+何をインストールしてたかは残っている。毎回手動でインストールして取捨選択すべきじゃない？
+
 # Macにおける環境構築メモ
 
 ## 手順
 1. [Homebrewのインストール](###Homebrew)
 1. `brew cask Dropbox`
 1. `./setup.sh`
-1. LINE, Audacityのインストール
 
 ## システム環境設定
 
@@ -28,14 +85,9 @@ killall Finder
 
 - GoogleChrome
 - Google日本語入力
-- Vivaldi
 - Slack
 - LINE
-- GIMP
-- Station
 - Dropbox
-- Office
-- VLC
 
 ## エディタ
 
@@ -50,13 +102,6 @@ brew cask install visual-studio-code
 [Visual Studio Code の設定を共有・バックアップする](https://qiita.com/maromaro3721/items/b6d71a5e5d2d6433778a)
 
 [Visual Studio Codeで設定ファイル・キーバインディング・拡張機能を共有する](https://qiita.com/mottox2/items/581869563ce5f427b5f6)
-
-### Goland
-1. インストール
-[GoLandのインストールと起動](https://pleiades.io/help/go/install-and-set-up-product.html)
-
-2. テーマの設定
-[One Dark PyCharm theme](https://github.com/yurtaev/idea-one-dark-theme)
 
 ### vim
 1. インストール
@@ -237,27 +282,3 @@ pyenv --version
 ```
 
 [pyenv/pyenv](https://github.com/pyenv/pyenv)
-
-
-### Node
-
-1.`tj/n`のインストール
-```bash
-brew install n
-```
-
-2. `node`をインストール
-```bash
-n 10
-```
-
-3. バージョンを指定
-```bash
-$ n
-
-  node/4.9.1
-ο node/8.11.3
-  node/10.15.0
-```
-
-[Node.jsのバージョン管理にtj/nを使ってみた話(vs nvm, nodenv)](https://qiita.com/jigengineer/items/6a4ff0bc3a480dd8bb58)
