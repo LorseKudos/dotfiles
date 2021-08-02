@@ -1,5 +1,6 @@
 setopt PROMPT_SUBST
 source ~/.zsh/git-prompt.sh
+source ~/.zsh/zsh-autosuggestions.zsh
 
 # git-completionの読み込み
 fpath=(~/.zsh $fpath)
