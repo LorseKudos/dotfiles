@@ -154,7 +154,7 @@ autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^p" history-beginning-search-backward-end
-bindkey "^b" history-beginning-search-forward-end
+bindkey "^n" history-beginning-search-forward-end
 setopt hist_verify # ヒストリ呼び出しから、実行までの間に一度編集を可能にする
 
 ## 実行したプロセスの消費時間が3秒以上かかったら自動的に消費時間の統計情報を表示する。
