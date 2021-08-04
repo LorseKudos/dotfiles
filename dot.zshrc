@@ -135,10 +135,10 @@ setopt always_last_prompt   # カーソル位置は保持したままファイ�
 setopt list_rows_first      # 補完候補リストが垂直ではなく水平方向に並ぶようになる
 
 ### ヒストリー設定 ###
+alias history='history -t "%m/%d %T" -D'
 HISTFILE=~/.zsh_history      # ヒストリファイルを指定
 HISTSIZE=10000               # ヒストリに保存するコマンド数
 SAVEHIST=10000               # ヒストリファイルに保存するコマンド数
-HISTTIMEFORMAT="[%Y/%M/%D %H:%M:%S] "
 setopt hist_ignore_all_dups  # 重複するコマンド行は古い方を削除
 setopt hist_ignore_dups      # 直前と同じコマンドラインはヒストリに追加しない
 setopt share_history         # コマンド履歴ファイルを共有する
