@@ -35,6 +35,9 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
 # ps コマンドのプロセス名補完
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 
+# 矢印キーで候補から選択
+zstyle ':completion:*:default' menu select
+
 # 出力の後に改行を入れる
 precmd() { echo "" }
 
@@ -114,7 +117,6 @@ setopt append_history        # 履歴を追加
 setopt inc_append_history    # 履歴をインクリメンタルに追加
 setopt hist_no_store         # historyコマンドは履歴に登録しない
 setopt hist_reduce_blanks    # 余分な空白は詰めて記録
-zstyle ':completion:*:default' menu select
 
 # コマンドを途中まで入力後、historyから絞り込み
 # 例 ls まで打ってCtrl+pでlsコマンドをさかのぼる、Ctrl+bで逆順
@@ -124,7 +126,6 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^p" history-beginning-search-backward-end
 bindkey "^b" history-beginning-search-forward-end
 
-setopt interactive_comments
 
 ### ssh-agent(WSL用) ###
 if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
