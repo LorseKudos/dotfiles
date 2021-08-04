@@ -65,6 +65,25 @@ alias bbb='cd ../..'
 alias c='clear'
 alias cat='bat'
 
+## 補完候補の色づけ
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+setopt auto_menu            # タブで補完候補を表示する
+setopt auto_cd              # ディレクトリ名のみ入力時、cdを適応させる
+setopt auto_param_keys      # カッコの対応などを自動的に補完
+setopt auto_param_slash     # ディレクトリ名の補完で末尾に/を自動的に付加
+setopt complete_in_word     # 語の途中でもカーソル位置で補完
+setopt correct              # コマンドのスペルを訂正する
+setopt equals               # =commandを`which command`と同じ処理
+setopt interactive_comments # コマンドラインでの#以降をコメントと見なす
+setopt list_packed          # 補完結果をできるだけ詰める
+setopt nolistbeep           # 補完候補表示時にビープ音を鳴らさない
+setopt no_tify              # バックグランドジョブが終了時知らせてくれる
+setopt magic_equal_subst    # 引数での=以降も補完(--prefix=/usrなど)
+setopt mark_dirs            # ファイル名の展開でディレクトリにマッチした場合末尾に / を付加する
+setopt print_eight_bit      # 日本語ファイル名を表示可能にする
+
+
 ### ヒストリー設定 ###
 HISTFILE=~/.zsh_history      # ヒストリファイルを指定
 HISTSIZE=10000               # ヒストリに保存するコマンド数
