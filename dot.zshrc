@@ -20,6 +20,9 @@ if [ -e /usr/local/share/zsh-completions ]; then
 fi
 
 # 補完候補の色づけ
+if [ -z "$LS_COLORS" ]; then
+    LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+fi
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # 補完で小文字でも大文字にマッチさせる
@@ -99,6 +102,7 @@ setopt correct              # コマンドのスペルを訂正する
 setopt equals               # =commandを`which command`と同じ処理
 setopt interactive_comments # コマンドラインでの#以降をコメントと見なす
 setopt list_packed          # 補完結果をできるだけ詰める
+setopt noautoremoveslash    # 末尾から自動的に/を除かない
 setopt nolistbeep           # 補完候補表示時にビープ音を鳴らさない
 setopt no_tify              # バックグランドジョブが終了時知らせてくれる
 setopt magic_equal_subst    # 引数での=以降も補完(--prefix=/usrなど)
