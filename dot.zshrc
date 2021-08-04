@@ -1,3 +1,4 @@
+### 補完 ###
 setopt PROMPT_SUBST
 source ~/.zsh/git-prompt.sh
 source ~/.zsh/zsh-autosuggestions.zsh
@@ -18,6 +19,22 @@ if [ -e /usr/local/share/zsh-completions ]; then
     fpath=(/usr/local/share/zsh-completions $fpath)
 fi
 
+# 補完候補の色づけ
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+# 補完で小文字でも大文字にマッチさせる
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# ../ の後は今いるディレクトリを補完しない
+zstyle ':completion:*' ignore-parents parent pwd ..
+
+# sudo の後ろでコマンド名を補完する
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
+                   /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+
+# ps コマンドのプロセス名補完
+zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
+
 # 出力の後に改行を入れる
 precmd() { echo "" }
 
@@ -30,6 +47,7 @@ else
 $ '
 fi
 
+### alias ###
 function mkcd(){
     if [[ -d $1 ]]; then
         cd $1
@@ -38,7 +56,6 @@ function mkcd(){
     fi
 }
 
-### alias ###
 case ${OSTYPE} in
     darwin*)
         alias ls='ls -G'
@@ -62,12 +79,14 @@ alias ..='cd ..'
 alias b='cd ..'
 alias bb='cd ../..'
 alias bbb='cd ../..'
+alias mv='mv -i'
+alias cp='cp -i'
 alias c='clear'
 alias cat='bat'
+alias k='kubectl'
 
-## 補完候補の色づけ
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
+### setopt ###
 setopt auto_menu            # タブで補完候補を表示する
 setopt auto_cd              # ディレクトリ名のみ入力時、cdを適応させる
 setopt auto_param_keys      # カッコの対応などを自動的に補完
