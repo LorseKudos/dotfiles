@@ -1,4 +1,16 @@
-### 補完 ###
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
 setopt PROMPT_SUBST
 source ~/.zsh/git-prompt.sh
 source ~/.zsh/zsh-autosuggestions.zsh
@@ -19,41 +31,19 @@ if [ -e /usr/local/share/zsh-completions ]; then
     fpath=(/usr/local/share/zsh-completions $fpath)
 fi
 
-
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*' completer _complete _expand _match _prefix _approximate _list _history
-zstyle ':completion:*:messages' format $YELLOW'%d'$DEFAULT
-zstyle ':completion:*:warnings' format $RED'No matches for:'$YELLOW' %d'$DEFAULT
-zstyle ':completion:*:descriptions' format $YELLOW'completing %B%d%b'$DEFAULT
-zstyle ':completion:*:corrections' format $YELLOW'%B%d '$RED'(errors: %e)%b'$DEFAULT
-zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*' completer _complete _expand _match _prefix _approximate _list
 zstyle ':completion:*' list-separator '-->'
-# グループ名に空文字列を指定すると，マッチ対象のタグ名がグループ名に使われる。
-# したがって，すべての マッチ種別を別々に表示させたいなら以下のようにする
-zstyle ':completion:*' group-name ''
-# 補完候補の色づけ
-autoload -Uz colors
-colors
-local LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-# 補完で小文字でも大文字にマッチさせる
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # ../ の後は今いるディレクトリを補完しない
 zstyle ':completion:*' ignore-parents parent pwd
 # 中間ファイル等は補完しない
 zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*\#'
 # sudo の後ろでコマンド名を補完する
-# zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
-#                    /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
-zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
+                   /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
 # ps, kill コマンドのプロセス名補完
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:*:kill:*:processes' command 'ps -u $USER -o pid,stat,%cpu,%mem,cputime,command'
-zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
-#何も入力されていないときのTABでTABが挿入されるのを抑制
-zstyle ':completion:*' insert-tab false
-# 矢印キーで候補から選択
-zstyle ':completion:*:default' menu select
+
 
 # 出力の後に改行を入れる
 precmd() { echo "" }
@@ -81,11 +71,6 @@ case ${OSTYPE} in
         ;;
 esac
 
-# "-F":ディレクトリに"/"を表示 / "-G"でディレクトリを色表示
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -110,11 +95,10 @@ alias -g @l='| less'
 alias -g @h='| head'
 alias -g @t='| tail'
 
-
 ### setopt ###
-# 補完候補リストを出来るだけコンパクトに表示する
 setopt list_packed
 setopt list_types
+setopt no_correct
 setopt auto_menu            # タブで補完候補を表示する
 setopt auto_cd              # ディレクトリ名のみ入力時、cdを適応させる
 setopt auto_param_keys      # カッコの対応などを自動的に補完
@@ -147,15 +131,7 @@ setopt inc_append_history    # 履歴をインクリメンタルに追加
 setopt hist_no_store         # historyコマンドは履歴に登録しない
 setopt hist_reduce_blanks    # 余分な空白は詰めて記録
 setopt hist_expand           # 補完時にヒストリを自動的に展開する。
-
-# コマンドを途中まで入力後、historyから絞り込み
-# 例 ls まで打ってCtrl+pでlsコマンドをさかのぼる、Ctrl+bで逆順
-autoload -Uz history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "^p" history-beginning-search-backward-end
-bindkey "^n" history-beginning-search-forward-end
-setopt hist_verify # ヒストリ呼び出しから、実行までの間に一度編集を可能にする
+setopt hist_verify           # ヒストリ呼び出しから、実行までの間に一度編集を可能にする
 
 ## 実行したプロセスの消費時間が3秒以上かかったら自動的に消費時間の統計情報を表示する。
 REPORTTIME=3
@@ -168,7 +144,6 @@ function cdup() {
 }
 zle -N cdup
 bindkey '^]' cdup
-
 
 ### ssh-agent(WSL用) ###
 if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
