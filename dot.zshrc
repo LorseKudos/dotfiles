@@ -70,6 +70,7 @@ fi
 ### alias ###
 mkcd() {mkdir -p "$@" && cd "$*[-1]"}
 mktmp() {mkdir `date +"%Y%m%d_%H%M%S"`}
+t() {mkdir -p `dirname $1` && touch $1}
 
 case ${OSTYPE} in
     darwin*)
