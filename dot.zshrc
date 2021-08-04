@@ -117,6 +117,7 @@ setopt glob_complete        # globを展開しないで候補の一覧から補�
 setopt globdots             # 明確なドットの指定なしで.から始まるファイルをマッチ
 setopt always_last_prompt   # カーソル位置は保持したままファイル名一覧を順次その場で表示
 setopt list_rows_first      # 補完候補リストが垂直ではなく水平方向に並ぶようになる
+setopt numeric_glob_sort    # ファイル名の展開で辞書順ではなく数値的にソート
 
 ### ヒストリー設定 ###
 alias history='history -t "%m/%d %T" -D'
