@@ -4,6 +4,7 @@
 sudo apt update
 sudo apt-get install build-essential curl file git
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 brew --version
 ```
 
@@ -17,8 +18,8 @@ chsh -s `which zsh`
 ## dotfile復元 / git_completionインストール / シンボリックリンク貼る
 ```bash
 git clone https://github.com/LorseKudos/dotfiles.git
-mv dotfiles .dotfiles
-./.dotfiles/setup.sh
+mv dotfiles .dotfiles && cd .dotfiles
+zsh setup.sh
 ```
 
 ## WSLのshellにWindowsのPATHを含まないようにする
@@ -28,6 +29,7 @@ cat << 'EOS' | sudo tee -a /etc/wsl.conf
 appendWindowsPath = false
 EOS
 ```
+設定の反映にはWSLを再起動が必要(powershellで`wsl --shutdown`)
 https://amaya382.hatenablog.jp/entry/2019/12/27/120057
 
 ## github
