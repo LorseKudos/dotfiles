@@ -23,12 +23,12 @@ do
     [[ "$f" == "dot.brewfile" ]] && continue
     [[ "$f" == "dot.gitignore" ]] && continue
 
-    echo "${f:3}"
+    echo "$HOME/${f:3} -> $HOME/.dotfiles/$f"
     ln -sf $HOME/.dotfiles/$f $HOME/${f:3}
 done
 
 # gitignoreは ~/.config/git/ignore に置く
-echo ".gitignore"
+echo "$HOME/.config/git/ignore -> $HOME/.dotfiles/dot.gitignore"
 mkdir -p $HOME/.config/git && ln -sf $HOME/.dotfiles/dot.gitignore $HOME/.config/git/ignore
 
 # brew bundle install --file=dot.brewfile
