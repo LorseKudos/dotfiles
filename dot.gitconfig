@@ -1,14 +1,62 @@
 [user]
         email = hi.suguru@gmail.com
         name = Suguru Hirakawa
+
 [url "git@github.com:"]
         pushinsteadof = https://github.com/
+
+[color]
+        ui = true
+
 [core]
+        editor = vim
         autocrlf = false
         ignorecase = false
         quotepath = false
-[color]
-        ui = true
+
+[fetch]
+    prune = true
+[push]
+    default = current
+[pull]
+    ff = only
+
+[difftool]
+    prompt = false
+[difftool "icdiff"]
+    cmd = icdiff --line-numbers $LOCAL $REMOTE
+[difftool "side-by-side-diff"]
+    cmd = GIT_PAGER='less -+F' colordiff --side-by-side --width=`tput cols` $LOCAL $REMOTE
 [alias]
-        co = commit
-        ps = push
+    s = status -sb
+    c = commit
+    a = add
+    aa = add -A
+    d = diff
+    dc = d --cached
+    l = !"GIT_PAGER='less -+F -p \"\\(HEAD\"' git log --graph --all --date=short --format='%C(yellow)%h%C(reset) %C(magenta)[%ad]%C(reset)%C(auto)%d%C(reset) %s %C(cyan)@%an%C(reset)'"
+    ll = !"GIT_PAGER='less -+F -p \"\\(HEAD\"' git log --graph --decorate=full --all --abbrev-commit --stat-count=5"
+    b = branch
+    co = checkout
+    sw = switch
+    url = !git config --list | egrep '^remote\\.[^=]+\\.url=' | sed -E -e 's/^remote\\.([^=]*)\\.url=(.*)$/\\1 = \\2/'
+    root = rev-parse --show-toplevel
+    # diff with side-by-side
+    sd = difftool -t icdiff
+    sdc = sd --cached
+    # Show <commit> with side-by-side
+    show-diff = !"f() { rev=${1:-HEAD}; git difftool -t icdiff $rev~1 $rev | bat -p; }; f"
+    # Remove all ignored files
+    rm-gitignore = !git rm --cached `git ls-files -ci --exclude-standard`
+    # Delete all merged branches
+    dmerged = !git branch --merged | egrep -v '^\\*|main$|master$|develop$' | xargs $XARGS_NO_RUN_IF_EMPTY git branch -d
+    # List an output of `git ls-files` in a tree-like format
+    #   treeify: https://github.com/dzamlo/treeify
+    #   $ git tree *.cpp
+    tree = !"f() { git ls-files $@ | sed -e 's/^\\(.*\\)$/\\.\\/\\1/' | treeify; }; f"
+    # List aliases
+    #   bat: https://github.com/sharkdp/bat
+    aliases = !git config --list | grep 'alias\\.' | sed -E -e 's/^alias\\.([^=]*)=(.*)$/  \\1 = \\2/' -e 1i[alias] | bat -p --language=.gitconfig
+    # Select a file path
+    #   $ rm $(git select 1) # Remove 1st file from git status
+    select = !"f() { git status -s | sed -E -e 's/^.{3}([^ ]*)$/\\1/' | sed -n -e \"${1}p\"; }; f"

@@ -1,0 +1,8 @@
+.DS_Store
+Thumbs.db
+.directory
+.vscode
+__pycache__
+
+# todo for me
+__todo.md

@@ -20,12 +20,15 @@ done
 # dotfileをホームディレクトリにリンク
 for f in dot.??*
 do
-    [[ "$f" == ".git" ]] && continue
-    [[ "$f" == ".DS_Store" ]] && continue
     [[ "$f" == "dot.brewfile" ]] && continue
+    [[ "$f" == "dot.gitignore" ]] && continue
 
     echo "${f:3}"
     ln -sf $HOME/.dotfiles/$f $HOME/${f:3}
 done
+
+# gitignoreは ~/.config/git/ignore に置く
+echo ".gitignore"
+mkdir -p $HOME/.config/git && ln -sf $HOME/.dotfiles/dot.gitignore $HOME/.config/git/ignore
 
 # brew bundle install --file=dot.brewfile
