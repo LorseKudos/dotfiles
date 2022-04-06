@@ -1,18 +1,18 @@
 [user]
-        email = hi.suguru@gmail.com
-        name = Suguru Hirakawa
+    email = hi.suguru@gmail.com
+    name = Suguru Hirakawa
 
 [url "git@github.com:"]
-        pushinsteadof = https://github.com/
+    pushinsteadof = https://github.com/
 
 [color]
-        ui = true
+    ui = true
 
 [core]
-        editor = vim
-        autocrlf = false
-        ignorecase = false
-        quotepath = false
+    editor = vim
+    autocrlf = false
+    ignorecase = false
+    quotepath = false
 
 [fetch]
     prune = true
