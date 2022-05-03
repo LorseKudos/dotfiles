@@ -3,6 +3,7 @@ Thumbs.db
 .directory
 .vscode
 __pycache__
+node_modules
 
 # todo for me
 __todo.md
