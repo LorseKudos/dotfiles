@@ -17,6 +17,8 @@ for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
   ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
 
+git clone https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
+
 # dotfileをホームディレクトリにリンク
 for f in dot.??*
 do
