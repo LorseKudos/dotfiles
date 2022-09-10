@@ -23,3 +23,5 @@ fi
 # "-F":ディレクトリに"/"を表示 / "-G"でディレクトリを色表示
 alias ls='ls -FG'
 alias ll='ls -alFG'
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

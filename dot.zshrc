@@ -152,4 +152,10 @@ if [ -f /proc/sys/fs/binfmt_misc/WSLInterop ]; then
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 fi
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 source ~/.zsh_profile
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+eval "$(direnv hook zsh)"
