@@ -5,8 +5,10 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export TZ=Asia/Tokyo
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
