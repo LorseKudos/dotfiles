@@ -5,7 +5,6 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export TZ=Asia/Tokyo
@@ -160,7 +159,3 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source ~/.zsh_profile
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-
-eval "$(direnv hook zsh)"
