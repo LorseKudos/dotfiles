@@ -1,0 +1,7 @@
+#!/bin/bash
+
+readonly MASTER='^(master|main)$'
+
+if [ "${remote_ref##refs/heads/}" =~ $MASTER ]; then
+    git pull origin
+fi
